@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>iya's 2025 christmas wishlist</title>
+<style>
+body {
+margin: 0;
+font-family: "poppins", sans-serif;
+background: linear-gradient(#fbe9ff, #ffd6ec);
+overflow-x: hidden;
+}
+
+/* snowfall */
+.snowflake {
+position: fixed;
+top: -10px;
+color: white;
+font-size: 20px;
+animation-name: fall;
+animation-timing-function: linear;
+animation-iteration-count: infinite;
+pointer-events:none;
+}
+
+@keyframes fall {
+0% { transform: translateY(0); opacity: 1; }
+100% { transform: translateY(100vh); opacity: 0.3; }
+}
+
+/* santa sliding */
+#santa {
+position: fixed;
+top: -10px;
+left: -200px;
+width: 180px;
+animation: slideSanta 12s linear infinite;
+z-index: 20;
+}
+
+@keyframes slideSanta {
+0% { left: -200px; }
+50% { left: 100vw; }
+100% { left: -200px; }
+}
+
+/* ho ho text */
+#hoho {
+position: fixed;
+top: 120px;
+left: -200px;
+font-size: 40px;
+color: red;
+font-weight: bold;
+animation: slideHoHo 12s linear infinite;
+z-index: 21;
+}
+
+@keyframes slideHoHo {
+0% { left: -200px; opacity: 0; }
+20% { opacity: 1; }
+50% { left: 100vw; opacity: 1; }
+90% { opacity: 0; }
+100% { left: -200px; opacity: 0; }
+}
+
+/* wishlist container */
+.wishlist-container {
+width: 90%;
+max-width: 900px;
+margin: 120px auto;
+background: rgba(255, 255, 255, 0.7);
+padding: 30px;
+border-radius: 20px;
+box-shadow: 0 0 20px rgba(255, 150, 200, 0.5);
+}
+
+h1 {
+text-align: center;
+font-size: 40px;
+color: #d63384;
+text-shadow: 2px 2px white;
+margin-top: 0;
+}
+
+.item {
+display: flex;
+align-items: center;
+margin: 25px 0;
+background: #fff0f8;
+padding: 15px;
+border-radius: 15px;
+box-shadow: 0 0 10px rgba(255, 200, 230, 0.6);
+gap: 10px;
+}
+
+.details {
+flex: 1;
+}
+
+.details strong {
+display:block;
+margin-bottom:4px;
+}
+
+.details input {
+width: 100%;
+padding: 10px;
+margin: 5px 0;
+border: 2px solid pink;
+border-radius: 10px;
+box-sizing:border-box;
+}
+
+/* upload box + image */
+.image-area {
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:6px;
+}
+
+.image-box {
+width: 150px;
+height: 150px;
+border: 2px dashed pink;
+border-radius: 15px;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 14px;
+color: #cc66aa;
+cursor: pointer;
+overflow:hidden;
+background:#fff;
+text-align:center;
+padding:4px;
+box-sizing:border-box;
+}
+
+.image-box img {
+max-width:100%;
+max-height:100%;
+object-fit:contain;
+}
+
+.file-input {
+display:none;
+}
+
+/* remove photo button */
+.remove-photo {
+margin-top: 4px;
+padding: 4px 10px;
+font-size: 11px;
+border-radius: 10px;
+border: 1px solid #cc66aa;
+background: #ffe4f3;
+color: #aa3377;
+cursor: pointer;
+}
+
+.remove-photo:hover {
+background: #ffd0eb;
+}
+
+/* christmas tree twinkling */
+#tree {
+position: fixed;
+bottom: 20px;
+left: 20px;
+width: 160px;
+animation: twinkle 1.5s infinite;
+}
+
+@keyframes twinkle {
+0%, 100% { filter: brightness(1); }
+50% { filter: brightness(1.4); }
+}
+
+/* gingerbread */
+#ginger {
+position: fixed;
+bottom: 20px;
+right: 20px;
+width: 120px;
+}
+
+.sparkle-divider {
+width: 200px;
+filter: drop-shadow(0 0 6px pink);
+animation: shimmer 2s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+0% { filter: drop-shadow(0 0 4px pink) brightness(1); }
+50% { filter: drop-shadow(0 0 10px hotpink) brightness(1.3); }
+100% { filter: drop-shadow(0 0 4px pink) brightness(1); }
+}
+
+/* helper */
+.save-note {
+text-align:center;
+font-size:13px;
+color:#aa4477;
+margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<script>
+for (let i = 0; i < 40; i++) {
+let flake = document.createElement("div");
+flake.innerHTML = "❄";
+flake.classList.add("snowflake");
+flake.style.left = Math.random() * 100 + "vw";
+flake.style.animationDuration = 4 + Math.random() * 6 + "s";
+flake.style.fontSize = 15 + Math.random() * 20 + "px";
+document.body.appendChild(flake);
+}
+</script>
+
+<audio id="bgmusic" loop>
+<source src="christmas-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener("click",function(){
+var m=document.getElementById("bgmusic");
+if(m && m.paused){
+m.play();
+}
+},{once:true});
+</script>
+
+<img id="santa" src="santa.png" alt="santa" />
+<div id="hoho">ho ho ho!</div>
+
+<script>
+let hohoStarted = false;
+document.addEventListener("click", function () {
+if (hohoStarted) return;
+hohoStarted = true;
+var hoho = document.getElementById("hohosound");
+hoho.play();
+setInterval(function () {
+hoho.currentTime = 0;
+hoho.play();
+}, 45000);
+}, { once: true });
+</script>
+
+<audio id="hohosound">
+<source src="hoho.mp3" type="audio/mpeg">
+</audio>
+
+<img id="tree" src="christmas-tree.png" alt="tree" />
+<img id="ginger" src="gingerbread.png" alt="gingerbread cookie" />
+
+<div class="wishlist-container">
+<h1>iya's 2025 christmas wishlist</h1>
+
+<div id="items-wrapper">
+<script>
+for (let i = 1; i <= 15; i++) {
+document.write(`
+<div class="item">
+  <div class="details">
+    <strong>${i}. product</strong>
+    <input class="name-input" type="text" placeholder="enter product name..." />
+    <input class="link-input" type="url" placeholder="enter product link (url)..." />
+  </div>
+  <div class="image-area">
+    <div class="image-box">click to upload<br>product image</div>
+    <input class="file-input" type="file" accept="image/*" />
+    <button type="button" class="remove-photo">remove photo</button>
+  </div>
+</div>
+<div style="width:100%; text-align:center; margin:15px 0;">
+  <img src="candy-cane-sparkle.png" alt="candy cane sparkly divider" class="sparkle-divider" />
+</div>
+`);
+}
+</script>
+</div>
+
+<div class="save-note">
+✨ wishlist is saved online and shared. anyone with this link sees the same products.
+</div>
+
+</div>
+
+<!-- firebase libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+<script>
+// put your firebase config here (from firebase console → project settings → web app)
+var firebaseConfig = {
+apiKey: "AIzaSyDkW--iV30bddiY18tq_L0R5l0ysWqu_tA",
+authDomain: "iya-christmas-wish.firebaseapp.com",
+projectId: "iya-christmas-wish",
+storageBucket: "iya-christmas-wish.firebasestorage.app",
+messagingSenderId: "94208728014",
+appId: "1:94208728014:web:7573849854d73a134ea99f",
+measurementId: "G-Z7Z6ZRB9PH"
+};
+
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+var storage = firebase.storage();
+
+// one shared document for all users
+var wishlistDoc = db.collection("wishlists").doc("iyas-2025");
+
+function set_image_on_box(box, src) {
+box.innerHTML = "";
+var img = document.createElement("img");
+img.src = src;
+box.appendChild(img);
+}
+
+function apply_data_to_page(items_data) {
+if (!items_data) return;
+var items = document.querySelectorAll(".item");
+items.forEach(function(item, index) {
+var entry = items_data[index];
+if (!entry) return;
+var name_input = item.querySelector(".name-input");
+var link_input = item.querySelector(".link-input");
+var image_box = item.querySelector(".image-box");
+name_input.value = entry.name || "";
+link_input.value = entry.link || "";
+if (entry.image) {
+set_image_on_box(image_box, entry.image);
+} else {
+if (!image_box.querySelector("img")) {
+image_box.innerHTML = "click to upload<br>product image";
+}
+}
+});
+}
+
+function save_data() {
+var items = document.querySelectorAll(".item");
+var data = [];
+items.forEach(function(item) {
+var name = item.querySelector(".name-input").value || "";
+var link = item.querySelector(".link-input").value || "";
+var img_tag = item.querySelector(".image-box img");
+var image = img_tag ? img_tag.src : "";
+data.push({ name: name, link: link, image: image });
+});
+wishlistDoc.set({ items: data })
+.then(function() {
+console.log("wishlist saved online");
+})
+.catch(function(e) {
+console.warn("could not save wishlist", e);
+});
+}
+
+function setup_wishlist() {
+var items = document.querySelectorAll(".item");
+items.forEach(function(item, index) {
+var name_input = item.querySelector(".name-input");
+var link_input = item.querySelector(".link-input");
+var image_box = item.querySelector(".image-box");
+var file_input = item.querySelector(".file-input");
+var remove_button = item.querySelector(".remove-photo");
+
+image_box.addEventListener("click", function() {
+file_input.click();
+});
+
+file_input.addEventListener("change", function(e) {
+var file = e.target.files[0];
+if (!file) return;
+var storage_ref = storage.ref();
+var image_ref = storage_ref.child("wishlist-images/item-" + index + "-" + Date.now() + "-" + file.name);
+var upload_task = image_ref.put(file);
+upload_task.on("state_changed",
+function(snapshot) {},
+function(error) {
+console.warn("image upload error", error);
+},
+function() {
+upload_task.snapshot.ref.getDownloadURL().then(function(download_url) {
+set_image_on_box(image_box, download_url);
+save_data();
+});
+}
+);
+});
+
+remove_button.addEventListener("click", function() {
+image_box.innerHTML = "click to upload<br>product image";
+file_input.value = "";
+save_data();
+});
+
+[name_input, link_input].forEach(function(input) {
+input.addEventListener("input", function() {
+save_data();
+});
+});
+});
+}
+
+function start_live_listener() {
+wishlistDoc.onSnapshot(function(doc) {
+if (!doc.exists) {
+console.log("no wishlist yet, will create on first save");
+return;
+}
+var data = doc.data();
+apply_data_to_page(data.items || []);
+}, function(error) {
+console.warn("live update error", error);
+});
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+setup_wishlist();
+start_live_listener();
+});
+</script>
+
+</body>
+</html>
